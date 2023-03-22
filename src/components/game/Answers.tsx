@@ -6,7 +6,6 @@ import {
   selectCurrentWinnings,
   setCurrentWinnings,
   setCurrentQuestion,
-  //selectLifelines,
 } from "../../redux/slices/playerReducer";
 
 import {
@@ -29,17 +28,12 @@ const Answers = () => {
   const allAnswers = useSelector(selectCurrentQuestion)?.all_answers;
   //Get the correct answers
   const correctAnswer = useSelector(selectCurrentQuestion)?.correct_answer;
-  //Get all incorrect answers
-  //const incorrectAnswers = useSelector(selectCurrentQuestion)?.incorrect_answers;
   //Get current winnings
   const currentWinnings = useSelector(selectCurrentWinnings);
 
   //Check if the host/player interacts
   const hostInteracts = useSelector(selectHostInteracts);
   const playerInteracts = useSelector(selectPlayerInteracts);
-
-  //Check if the user used the 50/50 lifeline
-  //const hasFiftyLifeline = useSelector(selectLifelines)?.fiftyFifty;
 
   //clear state from custom hook
   const { clearState } = useGame();
@@ -98,12 +92,6 @@ const Answers = () => {
       dispatch(setPlayerInteracts(false));
     }, 2000);
   };
-
-  // React.useEffect(() => {
-  //   if (incorrectAnswers?.length) {
-  //     setRandomIncorrect(incorrectAnswers[Math.floor(Math.random() * incorrectAnswers.length)]);
-  //   }
-  // }, [incorrectAnswers]);
 
   return (
     <div>
