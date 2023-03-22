@@ -31,6 +31,8 @@ const Game = () => {
   const isDialogOpened = useSelector(selectOpenDialogBox);
   const isGameWon = useSelector(selectWonGame);
 
+  const currentQuestion = useSelector(selectCurrentQuestion);
+
   //check if the host/player interacts
   const hostInteracts = useSelector(selectHostInteracts);
   const playerInteracts = useSelector(selectPlayerInteracts);
@@ -80,7 +82,7 @@ const Game = () => {
     getGameData();
   }, [dispatch, getQuestions]);
 
-  if (isLoading && !selectCurrentQuestion) {
+  if (isLoading || !currentQuestion) {
     return <></>;
   } else {
     return (

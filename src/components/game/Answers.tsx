@@ -58,16 +58,22 @@ const Answers = () => {
       //if currentWinnings is fewer than 14 continue the game
       //if it's equal - finish the game and congratulate the player
       //clear the state at the end
-      setTimeout(() => {
-        if (currentWinnings < 14) {
+
+      if (currentWinnings < 14) {
+        setTimeout(() => {
           dispatch(setCurrentWinnings(currentWinnings + 1));
           dispatch(setCurrentQuestion(allQuestions[currentWinnings + 1]));
-        } else {
-          dispatch(setWonGame(true));
+        }, 3000);
+      } else {
+        setTimeout(() => {
           dispatch(setHostText("Congratulations, you've become a millionaire!"));
+          dispatch(setWonGame(true));
+        }, 1500);
+
+        setTimeout(() => {
           clearState();
-        }
-      }, 2000);
+        }, 3000);
+      }
     } else {
       //Show the incorrect bubble and add wrong-answer to the classlist
       setTimeout(() => {
@@ -81,7 +87,7 @@ const Answers = () => {
         clearState();
         target.classList.remove("wrong-answer");
         target.blur();
-      }, 2000);
+      }, 3000);
     }
 
     //Clear the interactions and texts
@@ -90,7 +96,7 @@ const Answers = () => {
       dispatch(setHostText(""));
       dispatch(setHostInteracts(false));
       dispatch(setPlayerInteracts(false));
-    }, 2000);
+    }, 3000);
   };
 
   return (

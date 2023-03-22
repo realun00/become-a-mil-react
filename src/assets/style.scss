@@ -23,8 +23,6 @@ body {
 .App {
   position: relative;
   min-height: 100vh;
-  overflow-y: hidden;
-  overflow-x: hidden;
 
   background-image: url("./images/background.webp");
   background-repeat: no-repeat;
@@ -52,10 +50,63 @@ body {
   background-color: $primary_orange;
 }
 
+.welcome-container {
+  height: 100vh;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.welcome {
+  width: 35vw;
+  height: 250px;
+  background-color: $primary_purple;
+  border-radius: 15px;
+  opacity: 0.9;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: $primary_orange;
+
+  .MuiInputLabel-root,
+  .MuiInput-input {
+    color: $primary_orange;
+  }
+
+  .MuiInput-root:hover:not(.Mui-disabled, .Mui-error):before {
+    border-bottom-color: $primary_orange;
+  }
+
+  .MuiInput-root:before {
+    border-color: $primary_orange;
+  }
+
+  .MuiButtonBase-root {
+    background-color: $primary_orange;
+    border-color: $primary_orange;
+    font-weight: bold;
+    color: $primary_purple;
+    width: 195px;
+
+    &:hover {
+      background-color: $primary_orange;
+      color: #fff;
+      border-color: $primary_orange;
+    }
+  }
+}
+
+@media only screen and (max-width: 600px) {
+  .welcome {
+    width: 100%;
+  }
+}
+
 /*
    Container
 */
-
 .bottom-container {
   position: fixed;
   bottom: 0;
