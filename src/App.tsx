@@ -1,15 +1,18 @@
 import React, { lazy, Suspense } from "react";
 import { Route, Routes } from "react-router-dom";
-import { Container } from "react-bootstrap";
+
+import "bootstrap/dist/css/bootstrap.min.css";
+import "./assets/style.scss";
 
 const Welcome = lazy(() => import("./pages/Welcome"));
 const Game = lazy(() => import("./pages/Game"));
 const NotFound = lazy(() => import("./pages/NotFound"));
 
 function App() {
+
   return (
     <div className="App">
-      <Container fluid="xxl" id="df-container">
+      <div className="container-xxl position-relative">
         <Routes>
           <Route path="/" element={<Welcome />} />
           <Route path="/game" element={<Game />} />
@@ -24,7 +27,7 @@ function App() {
             }
           />
         </Routes>
-      </Container>
+      </div>
     </div>
   );
 }

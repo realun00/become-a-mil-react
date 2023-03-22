@@ -1,0 +1,378 @@
+@import "bootstrap/dist/css/bootstrap.min.css";
+
+$primary_blue: #257cff;
+$primary_orange: #fc9e10;
+$primary_purple: #5e2faa;
+$primary_green: #2dd428;
+$primary_red: #f53e3e;
+
+html,
+body {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  font-size: 0.875rem;
+  font-weight: 400;
+  line-height: 1.3;
+  text-align: left;
+  -webkit-text-size-adjust: 100%;
+}
+
+.App {
+  position: relative;
+  min-height: 100vh;
+  overflow-y: hidden;
+  overflow-x: hidden;
+
+  background-image: url("./images/background.webp");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+}
+
+.color-black {
+  color: #000 !important;
+}
+
+.color-white {
+  color: #fff;
+}
+
+.color-orange {
+  color: $primary_orange;
+}
+
+.background-white {
+  background-color: #fff;
+}
+
+.background-orange {
+  background-color: $primary_orange;
+}
+
+/*
+   Container
+*/
+
+.bottom-container {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin-bottom: 3rem;
+}
+
+.question-container {
+  min-height: 75px;
+  position: relative;
+  width: 100%;
+  color: #ffffff;
+  background-color: #000;
+  border: 2px solid $primary_blue;
+  border-radius: 18%;
+  opacity: 0.85;
+  padding: 0.8rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/*
+   Buttons
+*/
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+.answer-button-text {
+  animation: fadeIn 5s;
+}
+
+.answer-button {
+  position: relative;
+  width: 100%;
+  min-height: 40px;
+  color: #ffffff;
+  background-color: #000;
+  text-align: center;
+  border: 2px solid $primary_blue;
+  border-radius: 18%;
+  opacity: 0.85;
+
+  &:hover {
+    border: 2px solid $primary_orange;
+  }
+
+  &:active,
+  &:focus {
+    background-color: $primary_orange;
+    border-color: $primary_orange;
+  }
+
+  &:disabled {
+    border-color: $primary_blue;
+    background-color: #000;
+  }
+
+  span {
+    pointer-events: none;
+  }
+}
+
+@keyframes blinker {
+  50% {
+    opacity: 0;
+  }
+}
+
+.correct-answer {
+  animation: blinker 0.2s linear infinite;
+  background-color: $primary_green !important;
+  border-color: $primary_green !important;
+}
+
+.wrong-answer {
+  animation: blinker 0.2s linear infinite;
+  background-color: $primary_red !important;
+  border-color: $primary_red !important;
+}
+
+.lifeline-button {
+  border: 2px solid $primary_blue;
+  border-radius: 50%;
+  background: transparent;
+  color: #fff;
+  transition: 0.3s;
+  font-weight: 600;
+  min-height: 35px;
+  min-width: 55px;
+  position: relative;
+
+  svg {
+    transition: 0.3s;
+    font-size: 24px;
+  }
+
+  &:hover {
+    color: $primary_orange;
+    border-color: $primary_orange;
+    svg {
+      color: $primary_orange;
+    }
+  }
+
+  &:disabled {
+    border-color: $primary_red;
+    cursor: not-allowed;
+    svg {
+      color: #fff;
+    }
+
+    &:after {
+      position: absolute;
+      content: "\2717";
+      color: red;
+      font-size: 30px;
+      left: 0;
+      right: 0;
+      top: -6px;
+    }
+  }
+}
+
+/*
+   Drawer styling
+*/
+.drawer-opener {
+  position: fixed;
+  right: 0;
+  height: 100vh;
+  width: 50px;
+  z-index: 999;
+  cursor: pointer;
+  transition: all 0.5s ease-in;
+
+  &:hover {
+    background-color: $primary_purple;
+    opacity: 0.8;
+  }
+
+  .MuiButtonBase-root {
+    color: #fff;
+    top: 50vh;
+    right: -5px;
+  }
+}
+
+.drawer-container {
+  //background: linear-gradient(11deg, rgba(196, 104, 249, 1) 0%, rgba(98, 7, 255, 1) 100%);
+  background-color: $primary_purple;
+  min-width: 300px;
+
+  .MuiDivider-root {
+    border-color: #fff;
+  }
+
+  svg {
+    color: #fff;
+  }
+
+  ul {
+    margin: 0;
+    padding-left: 0;
+  }
+
+  li {
+    list-style-type: none;
+    font-weight: 600;
+  }
+}
+
+.MuiDrawer-paper {
+  background-color: $primary_purple !important;
+  opacity: 0.8;
+}
+
+/*
+   DIALOGS
+*/
+
+.dialogs-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: absolute;
+  left: 0;
+  right: 0;
+  margin: 0 auto;
+  top: 15vh;
+  width: 34vw;
+  min-width: 200px;
+}
+
+.bubble {
+  position: relative;
+  font-family: sans-serif;
+  font-size: 18px;
+  line-height: 24px;
+  min-width: 80px;
+  background: #fff;
+  border-radius: 40px;
+  padding: 12px;
+  text-align: center;
+  color: #000;
+  margin: 0 10px;
+}
+
+.bubble-bottom-left:before {
+  content: "";
+  width: 0px;
+  height: 0px;
+  position: absolute;
+  border-left: 24px solid #fff;
+  border-right: 12px solid transparent;
+  border-top: 12px solid #fff;
+  border-bottom: 20px solid transparent;
+  left: 16px;
+  bottom: -24px;
+}
+
+.bubble-bottom-right:before {
+  content: "";
+  width: 0px;
+  height: 0px;
+  position: absolute;
+  border-left: 12px solid transparent;
+  border-right: 24px solid #fff;
+  border-top: 12px solid #fff;
+  border-bottom: 20px solid transparent;
+  left: 30px;
+  bottom: -24px;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+}
+
+.animate-flicker {
+  animation: fadeIn 0.8s infinite alternate;
+}
+
+.lifeline-dialog {
+  .MuiDialog-container {
+    align-items: flex-start;
+    justify-content: flex-end;
+  }
+
+  .MuiDialog-paper {
+    background-color: $primary_purple;
+    color: #fff;
+    min-width: 350px;
+    min-height: 400px;
+    opacity: 0.85;
+  }
+
+  .MuiDialogContent-root {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: flex-end;
+  }
+
+  @media only screen and (max-width: 600px) {
+    .MuiDialog-container {
+      align-items: flex-start;
+      justify-content: center;
+    }
+
+    .MuiDialog-paper {
+      min-width: 100%;
+    }
+  }
+
+  .MuiButtonBase-root {
+    background-color: $primary_orange;
+    border-color: $primary_orange;
+    font-weight: bold;
+
+    &:hover {
+      background-color: $primary_orange;
+      color: #fff;
+      border-color: $primary_orange;
+    }
+  }
+}
+
+.growing-bar-container {
+  background-color: transparent;
+  position: relative;
+  width: 25px;
+  height: 50vh;
+}
+
+.growing-bar {
+  background-color: $primary_orange;
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  box-sizing: border-box;
+  animation: grow 1.5s ease-out forwards;
+  transform-origin: bottom;
+}
+
+@keyframes grow {
+  from {
+    transform: scaleY(0);
+  }
+}
