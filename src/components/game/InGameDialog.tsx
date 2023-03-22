@@ -55,6 +55,9 @@ function DialogBody<T extends DialogBodyInterface>(properties: T) {
           answer.percent = Math.floor(Math.random() * 30);
         }
 
+        if (answer.name === "deleted-50") {
+          return <div key={answer.option} style={{ display: "none" }} />;
+        }
         return (
           <div key={answer.option} className="d-flex flex-column align-items-center">
             <div className="growing-bar-container">

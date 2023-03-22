@@ -16,7 +16,6 @@ const Question = () => {
 
   React.useEffect(() => {
     if (question) {
-      //dispatch(setHostInteracts(true));
       const timeout = setTimeout(() => {
         if (typing === "istyping" && typedQuestion !== question) {
           setTypedQuestion(question.slice(0, typedQuestion.length + 1));
@@ -28,6 +27,8 @@ const Question = () => {
         }
       }, 30);
       return () => clearTimeout(timeout);
+    } else {
+      setTypedQuestion("");
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [question, typedQuestion, textState]);
@@ -43,7 +44,7 @@ const Question = () => {
     if (typing === "istyping") {
       dispatch(setHostInteracts(true));
     }
-  }, [dispatch, typing])
+  }, [dispatch, typing]);
 
   return <div dangerouslySetInnerHTML={{ __html: typedQuestion }} className="question-container my-3" />;
 };

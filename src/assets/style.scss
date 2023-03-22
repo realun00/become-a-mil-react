@@ -173,7 +173,10 @@ body {
 
   &:disabled {
     border-color: $primary_red;
+    color: #fff;
+
     cursor: not-allowed;
+
     svg {
       color: #fff;
     }
